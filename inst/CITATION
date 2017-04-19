@@ -1,0 +1,23 @@
+citHeader("To cite", sQuote("mmcm"), "in publications, please use:")
+
+citEntry(
+  entry        = "Article",
+  title        = "A modified maximum contrast method for unequal sample sizes in pharmacogenomic studies",
+  author       = personList(
+                   as.person("Kengo NAGASHIMA"),
+		               as.person("Yasunori SATO"),
+		               as.person("Chikuma HAMADA")
+                 ),
+  journal      = "Statistical Applications in Genetics and Molecular Biology",
+  year         = "2011",
+  volume       = "10",
+  number       = "1",  
+  pages        = "Article 41",
+	url          = "http://dx.doi.org/10.2202/1544-6115.1560",
+  textVersion  = paste(
+    "Nagashima, K., Sato, Y., Hamada, C. (2011).", 
+	  "A modified maximum contrast method for unequal sample sizes in pharmacogenomic studies",
+	  "Stat Appl Genet Mol Biol. 10(1): Article 41.",
+    "URL: http://dx.doi.org/10.2202/1544-6115.1560"
+  )
+)
