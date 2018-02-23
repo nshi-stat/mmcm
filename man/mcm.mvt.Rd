@@ -182,4 +182,3 @@ A performance comparison of maximum contrast methods to detect dose dependency.
 \code{\link{mmcm.mvt}}
 }
 \keyword{htest}
-

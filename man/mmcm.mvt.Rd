@@ -186,4 +186,3 @@ genes in genome-wide studies.
 \code{\link{mmcm.resamp}}
 }
 \keyword{htest}
-

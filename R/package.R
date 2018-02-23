@@ -7,10 +7,6 @@
 #' @name mmcm-package
 #' @aliases mmcm
 #' @docType package
-#' @author
-#' Author: Kengo NAGASHIMA and Yasunori SATO
-#' 
-#' Maintainer: Kengo NAGASHIMA \email{nshi@@chiba-u.jp}
 #' @references
 #' Nagashima, K., Sato, Y., Hamada, C. (2011).
 #' A modified maximum contrast method for unequal sample sizes in pharmacogenomic studies
@@ -29,7 +25,6 @@
 #' \code{\link{mcm.mvt}},
 #' \code{\link{mmcm.mvt}},
 #' \code{\link{mmcm.resamp}}
-#' @useDynLib mmcm
-#' @import mvtnorm
+#' @useDynLib mmcm, .registration = TRUE
 #' @keywords htest
 NULL

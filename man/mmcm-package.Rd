@@ -2,18 +2,13 @@
 % Please edit documentation in R/package.R
 \docType{package}
 \name{mmcm-package}
-\alias{mmcm}
 \alias{mmcm-package}
+\alias{mmcm}
 \title{The modified maximum contrast method package}
 \description{
 This package provides an implementation of modified maximum contrast methods and the maximum contrast method.
 This version supports functions \code{\link{mmcm.mvt}}, \code{\link{mcm.mvt}} that gives P-value by using randomized quasi-Monte Carlo method from \code{\link[mvtnorm:pmvt]{pmvt}} function of package \code{mvtnorm}, and \code{\link{mmcm.resamp}} that gives P-value by using the permutation method.
 In a one-way problem testing pattern of several factor level means, the maximum contrast statistics (Yoshimura, I., 1997) may be used. But under unequal sample size situations, denominator of the maximum contrast statistics is overestimated. Thus we propose a modified maximum contrast statistics for the unequal sample size situation. Denominetor of the modified maximum contrast statistics is not influenced under the unequal sample size situation.
-}
-\author{
-Author: Kengo NAGASHIMA and Yasunori SATO
-
-Maintainer: Kengo NAGASHIMA \email{nshi@chiba-u.jp}
 }
 \references{
 Nagashima, K., Sato, Y., Hamada, C. (2011).
@@ -36,4 +31,3 @@ A performance comparison of maximum contrast methods to detect dose dependency.
 \code{\link{mmcm.resamp}}
 }
 \keyword{htest}
-

@@ -2,6 +2,11 @@
 # The 'mmcm' package
 
 
+## Changes in version 1.2-7 (2018-02-23)
+
+* Updated according to the CRAN policies 
+
+
 ## Changes in version 1.2-6 (2016-01-15)
 
 * Fixed the NAMESPACE file

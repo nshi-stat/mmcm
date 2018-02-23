@@ -26,4 +26,3 @@ The case where printed "More than 2 contrast coefficient vectors were selected",
 \code{\link{mcm.mvt}}
 }
 \keyword{print}
-

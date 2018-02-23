@@ -1,15 +1,16 @@
 Package: mmcm
 Type: Package
 Title: Modified Maximum Contrast Method
-Version: 1.2-6
-Author: Kengo NAGASHIMA and Yasunori SATO
-Maintainer: Kengo NAGASHIMA <nshi@chiba-u.jp>
-Depends:
-    mvtnorm
+Version: 1.2-7
+Authors@R: c(
+  person("Kengo", "Nagashima", email = "nshi1201@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4529-9045")),
+  person("Yasunori", "Sato", role = c("aut")))
+Imports:
+  mvtnorm
 Description: An implementation of modified maximum contrast methods
-    and the maximum contrast method: Functions 'mmcm.mvt' and
-    'mcm.mvt' give P-value by using randomized quasi-Monte Carlo
-    method with 'pmvt' function of package 'mvtnorm', and
-    'mmcm.resamp' gives P-value by using a permutation method.
+  and the maximum contrast method: Functions 'mmcm.mvt' and
+  'mcm.mvt' give P-value by using randomized quasi-Monte Carlo
+  method with 'pmvt' function of package 'mvtnorm', and
+  'mmcm.resamp' gives P-value by using a permutation method.
 License: GPL-3
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
