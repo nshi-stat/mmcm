@@ -168,6 +168,7 @@
 #' yy
 #' @keywords htest
 #' @importFrom stats var
+#' @importFrom mvtnorm pmvt
 #' @export
 mmcm.mvt <- function(x, g, contrast, alternative = c("two.sided", "less", "greater"),
   algorithm = GenzBretz()) {
