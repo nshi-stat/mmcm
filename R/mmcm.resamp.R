@@ -119,6 +119,8 @@
 #' @seealso
 #' \code{\link{mmcm.mvt}}
 #' @examples
+#' OpenMPController::omp_set_num_threads(2)
+#' 
 #' ## Example 1 ##
 #' #  true response pattern: dominant model c=(1, 1, -2)
 #' set.seed(136885)
@@ -186,6 +188,7 @@
 #' yy
 #' @keywords htest
 #' @importFrom stats var
+#' @importFrom OpenMPController omp_set_num_threads
 #' @export
 mmcm.resamp <- function(x, g, contrast, alternative = c("two.sided", "less", "greater"),
   nsample = 20000, abseps = 0.001, seed = NULL) {

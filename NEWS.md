@@ -2,7 +2,7 @@
 # The 'mmcm' package
 
 
-## Changes in version 1.2-7 (2018-02-23)
+## Changes in version 1.2-7 (2018-02-26)
 
 * Updated according to the CRAN policies 
 
