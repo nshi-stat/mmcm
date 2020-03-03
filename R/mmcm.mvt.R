@@ -128,9 +128,10 @@
 #' 
 #' ## Example 2 ##
 #' #  for dataframe
-#' #  true response pattern: pos = 1 dominant  model c=( 1,  1, -2)
-#' #                               2 additive  model c=(-1,  0,  1)
-#' #                               3 recessive model c=( 2, -1, -1)
+#' #  true response pattern:
+#' #    pos = 1 dominant  model c=( 1,  1, -2)
+#' #          2 additive  model c=(-1,  0,  1)
+#' #          3 recessive model c=( 2, -1, -1)
 #' set.seed(3872435)
 #' x <- c(
 #'   rnorm(130, mean =  1 / 6, sd = 1),
@@ -152,20 +153,10 @@
 #' contrast <- rbind(
 #'   c(-1, 0, 1), c(-2, 1, 1), c(-1, -1, 2)
 #' )
-#' mmcmtapply <- function(r) {
-#'   mmcm.mvt(
-#'     xx$x[xx$pos==r[1]], xx$g[xx$pos==r[1]],
-#'     contrast
-#'   )
-#' }
-#' y <- tapply(xx$pos, xx$pos, mmcmtapply)
-#' yy <- data.frame(
-#'   Pos       = as.vector(names(y)),
-#'   Pval      = as.vector(sapply(y, "[[", 3)),
-#'   Pattern   = as.vector(sapply(y, "[[", 7)),
-#'   QMC_Error = as.vector(sapply(y, "[[", 9))
-#' )
-#' yy
+#' y <- by(xx, xx$pos, function(x) mmcm.mvt(x$x, x$g,
+#'   contrast))
+#' y <- do.call(rbind, y)[,c(3,7,9)]
+#' y
 #' @keywords htest
 #' @importFrom stats var
 #' @importFrom mvtnorm pmvt
