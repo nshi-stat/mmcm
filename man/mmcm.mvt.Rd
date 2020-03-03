@@ -4,8 +4,13 @@
 \alias{mmcm.mvt}
 \title{The modified maximum contrast method by using randomized quasi-Monte Carlo method}
 \usage{
-mmcm.mvt(x, g, contrast, alternative = c("two.sided", "less", "greater"),
-  algorithm = GenzBretz())
+mmcm.mvt(
+  x,
+  g,
+  contrast,
+  alternative = c("two.sided", "less", "greater"),
+  algorithm = GenzBretz()
+)
 }
 \arguments{
 \item{x}{a numeric vector of data values}

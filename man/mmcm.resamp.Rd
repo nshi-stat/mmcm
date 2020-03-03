@@ -4,8 +4,16 @@
 \alias{mmcm.resamp}
 \title{The permuted modified maximum contrast method}
 \usage{
-mmcm.resamp(x, g, contrast, alternative = c("two.sided", "less", "greater"),
-  nsample = 20000, abseps = 0.001, seed = NULL)
+mmcm.resamp(
+  x,
+  g,
+  contrast,
+  alternative = c("two.sided", "less", "greater"),
+  nsample = 20000,
+  abseps = 0.001,
+  seed = NULL,
+  nthread = 2
+)
 }
 \arguments{
 \item{x}{a numeric vector of data values}
@@ -25,6 +33,9 @@ You can specify just the initial letter.}
 
 \item{seed}{a single value, interpreted as an integer;
 see \code{\link[base:Random]{set.seed()}} function. (default: NULL)}
+
+\item{nthread}{sthe number of threads used in parallel computing, or FALSE 
+that means single threading (default: 2)}
 }
 \value{
 \item{statistic}{the value of the test statistic with a name describing it.}
@@ -123,8 +134,6 @@ level), or \eqn{NRESAMPMAX}{NRESAMPMAX} times. Output the approximate P-value
 \eqn{\hat{p}^{(r)}}{hat-p(r)}.
 }
 \examples{
-OpenMPController::omp_set_num_threads(2)
-
 ## Example 1 ##
 #  true response pattern: dominant model c=(1, 1, -2)
 set.seed(136885)
@@ -146,14 +155,16 @@ boxplot(
 contrast <- rbind(
   c(-1, 0, 1), c(-2, 1, 1), c(-1, -1, 2)
 )
-y <- mmcm.resamp(x, g, contrast, nsample = 20000, abseps = 0.01, seed = 5784324)
+y <- mmcm.resamp(x, g, contrast, nsample = 20000,
+                 abseps = 0.01, seed = 5784324)
 y
 
 ## Example 2 ##
 #  for dataframe
-#  true response pattern: pos = 1 dominant  model c=( 1,  1, -2)
-#                               2 additive  model c=(-1,  0,  1)
-#                               3 recessive model c=( 2, -1, -1)
+#  true response pattern:
+#    pos = 1 dominant  model c=( 1,  1, -2)
+#          2 additive  model c=(-1,  0,  1)
+#          3 recessive model c=( 2, -1, -1)
 set.seed(3872435)
 x <- c(
   rnorm(130, mean =  1 / 6, sd = 1),
@@ -167,7 +178,7 @@ x <- c(
   rnorm( 10, mean = -1 / 6, sd = 1)
 )
 g   <- rep(rep(1:3, c(130, 90, 10)), 3)
-pos <- rep(c("rsXXXX", "rsYYYY", "rsZZZZ"), each=230)
+pos <- rep(c("rsXXXX", "rsYYYY", "rsZZZZ"), each = 230)
 xx  <- data.frame(pos = pos, x = x, g = g)
 
 # coefficient matrix
@@ -176,20 +187,10 @@ contrast <- rbind(
   c(-1, 0, 1), c(-2, 1, 1), c(-1, -1, 2)
 )
 
-mmcmtapply <- function(r) {
-  mmcm.resamp(
-    xx$x[xx$pos==r[1]], xx$g[xx$pos==r[1]],
-    contrast, nsample = 10000, abseps = 0.01, seed = 5784324+as.numeric(r[1])
-  )
-}
-y <- tapply(xx$pos, xx$pos, mmcmtapply)
-yy <- data.frame(
-  Pos      = as.vector(names(y)),
-  Pval     = as.vector(sapply(y, "[[", 3)),
-  Pattern  = as.vector(sapply(y, "[[", 7)),
-  MC_Error = as.vector(sapply(y, "[[", 9))
-)
-yy
+y <- by(xx, xx$pos, function(x) mmcm.resamp(x$x, x$g,
+  contrast, abseps = 0.02, nsample = 10000))
+y <- do.call(rbind, y)[,c(3,7,9)]
+y
 }
 \references{
 Nagashima, K., Sato, Y., Hamada, C. (2011).

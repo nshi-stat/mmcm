@@ -6,10 +6,10 @@
 */
 
 /* .C calls */
-extern void mmcm_rwrap(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
+extern void mmcm_rwrap(void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *, void *);
 
 static const R_CMethodDef CEntries[] = {
-    {"mmcm_rwrap", (DL_FUNC) &mmcm_rwrap, 11},
+    {"mmcm_rwrap", (DL_FUNC) &mmcm_rwrap, 12},
     {NULL, NULL, 0}
 };
 

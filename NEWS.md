@@ -2,6 +2,11 @@
 # The 'mmcm' package
 
 
+## Changes in version 1.2-8 (2020-03-04)
+
+* Updated for R 4.0.0 
+
+
 ## Changes in version 1.2-7 (2018-02-26)
 
 * Updated according to the CRAN policies 

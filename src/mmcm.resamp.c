@@ -51,7 +51,7 @@
 //**********************************************************************************/
 void mmcm_rwrap(double *param, double *clsrnd, double *ctr_mat, int *resamp_size,
     int *class_dim, int *contr_dim, int *sample_size, double *abseps, int *side,
-    double *pval, double *error) {
+    int *nthread, double *pval, double *error) {
 
   int i;
   struct mmcmdat *rdat;
@@ -69,7 +69,7 @@ void mmcm_rwrap(double *param, double *clsrnd, double *ctr_mat, int *resamp_size
   //     dataset, coefficient matrix, resampling size
   //     No. of class, No. of contrast, sample size
   stat_resamp(rdat, ctr_mat, *resamp_size, *class_dim, *contr_dim,
-    *sample_size, *abseps, *side, pval, error);
+    *sample_size, *abseps, *side, *nthread, pval, error);
 
   /*
   my_free_mmcmdat1(rdat);
@@ -96,7 +96,7 @@ void mmcm_rwrap(double *param, double *clsrnd, double *ctr_mat, int *resamp_size
 //**********************************************************************************/
  int stat_resamp(struct mmcmdat *rdat, double *ctr_mat, long resamp_size,
     int class_dim, int contr_dim, int sample_size, double abseps, int side,
-    double *pval, double *error) {
+    int nthread, double *pval, double *error) {
 
   int i, class_max = -1;
   int nmin = 1000;
@@ -146,16 +146,17 @@ void mmcm_rwrap(double *param, double *clsrnd, double *ctr_mat, int *resamp_size
   // if openmp parallelization
   #ifdef _OPENMP
   struct mmcmdat **MP_rdat;
-  int th_id, nthread;
+  int th_id;
   double **MP_class_mean, **MP_rt_d, **MP_randseq;
-
+  
+  omp_set_num_threads(nthread);
+  
   #pragma omp parallel shared(k,pv,er,pcount,MP_rdat,MP_randseq,MP_class_mean,MP_rt_d,nthread) firstprivate(nmin,abseps,sample_size,class_dim,class_max,class_size,all_sum,ctr_mat,ctr_denom,contr_dim) private(i,j,th_id)
   {
 
     #pragma omp single
     {
-      nthread = omp_get_num_threads();
-      
+
       MP_rdat       = my_malloc_mmcmdat2(nthread, sample_size);
       MP_randseq    = my_malloc_double2(resamp_size, sample_size);
       MP_class_mean = my_malloc_double2(nthread, class_dim);

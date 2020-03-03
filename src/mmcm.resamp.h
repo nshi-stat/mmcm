@@ -9,8 +9,8 @@ struct mmcmdat {
 	double clsrnd;
 };
 
-void mmcm_rwrap(double *, double *, double *, int *, int *, int *, int *, double *, int *, double *, double *);
-int stat_resamp(struct mmcmdat *, double *, long, int, int, int, double, int, double *, double *);
+void mmcm_rwrap(double *, double *, double *, int *, int *, int *, int *, double *, int *, int *, double *, double *);
+int stat_resamp(struct mmcmdat *, double *, long, int, int, int, double, int, int, double *, double *);
 int mean_get(struct mmcmdat *, int, int, int, long *, double, double *);
 int rmean_get(struct mmcmdat *, int, int, int, long *, double, double *);
 int gsize_chk(struct mmcmdat *, int, int, int *, long *, double *);
