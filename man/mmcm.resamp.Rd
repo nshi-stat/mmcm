@@ -123,8 +123,7 @@ level), or \eqn{NRESAMPMAX}{NRESAMPMAX} times. Output the approximate P-value
 \eqn{\hat{p}^{(r)}}{hat-p(r)}.
 }
 \examples{
-require("OpenMPController")
-omp_set_num_threads(2)
+OpenMPController::omp_set_num_threads(2)
 
 ## Example 1 ##
 #  true response pattern: dominant model c=(1, 1, -2)
